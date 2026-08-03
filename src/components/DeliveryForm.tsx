@@ -6,10 +6,20 @@ import {
   type CalculateFormData,
 } from '../schemas/CalculateSchema'
 import { useDeliveryPoints } from '../hooks/useDeliveryPoints.ts'
-import { ArrowRight } from 'lucide-react'
 import { ParcelSizeSelector } from './ParcelSizeSelector.tsx'
+import { useOrderStore } from '../store/orderStore.ts'
+import { useNavigate } from 'react-router-dom'
+import { useCalculateDelivery } from '../hooks/useCalculateDelivery.ts'
 
 export function DeliveryForm() {
+  const navigate = useNavigate()
+  const {
+    mutate: calculate,
+    isPending,
+    error: calcError,
+  } = useCalculateDelivery()
+  const setCalculatedData = useOrderStore((state) => state.setCalculatedData)
+
   const {
     control,
     handleSubmit,
@@ -38,12 +48,37 @@ export function DeliveryForm() {
     const fromPoint = points.find((p) => p.id === data.fromCity)
     const toPoint = points.find((p) => p.id === data.toCity)
 
-    console.log('Отправляем на расчет', {
-      fromPoint,
-      toPoint,
-      parcelSize: data.parcelSize,
-    })
-    // тут потом вызовешь mutate(data) из useCalculateDelivery
+    if (!fromPoint || !toPoint || !data.parcelSize) return
+
+    calculate(
+      {
+        package: {
+          length: data.parcelSize.length,
+          width: data.parcelSize.width,
+          height: data.parcelSize.height,
+          weight: data.parcelSize.weight,
+        },
+        senderPoint: {
+          latitude: fromPoint.latitude,
+          longitude: fromPoint.longitude,
+        },
+        receiverPoint: {
+          latitude: toPoint.latitude,
+          longitude: toPoint.longitude,
+        },
+      },
+      {
+        onSuccess: (options) => {
+          setCalculatedData({
+            fromPoint,
+            toPoint,
+            parcelSize: data.parcelSize!,
+            deliveryOptions: options,
+          })
+          navigate('/order/step-1')
+        },
+      }
+    )
   }
 
   return (
@@ -183,10 +218,17 @@ export function DeliveryForm() {
 
         <button
           type="submit"
-          className="flex justify-center gap-2 w-full bg-black text-white rounded-xl py-3"
+          disabled={isPending}
+          className="w-full bg-black text-white rounded-xl py-3"
         >
-          Рассчитать <ArrowRight />
+          {isPending ? 'Считаем...' : 'Рассчитать'}
         </button>
+
+        {calcError && (
+          <p className="text-red-500 text-sm mt-2">
+            Не удалось рассчитать стоимость доставки
+          </p>
+        )}
       </form>
     </div>
   )

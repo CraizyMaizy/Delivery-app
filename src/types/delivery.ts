@@ -21,3 +21,11 @@ export type PackageSize = {
   height: number
   name?: string
 }
+
+export type DeliveryOption = {
+  id: string
+  name: string
+  type: string
+  price: number
+  days: number
+}
