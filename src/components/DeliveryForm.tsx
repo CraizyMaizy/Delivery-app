@@ -49,7 +49,7 @@ export function DeliveryForm() {
   return (
     <div className="border rounded-2xl p-6">
       <h1 className="text-2xl font-bold mb-6">Рассчитать доставку</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div>
           <label className="block text-sm font-medium mb-1">
             Город отправки
