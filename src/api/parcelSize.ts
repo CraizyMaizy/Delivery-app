@@ -10,6 +10,5 @@ export const getSize = async (): Promise<ParcelType[]> => {
   const { data } = await api.get<ParcelTypeResponse>(
     '/api/v1/delivery/package/types'
   )
-  console.log('data', data)
   return data.packages
 }
