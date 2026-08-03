@@ -1,6 +1,6 @@
 import { History, User, LogOut, Package} from "lucide-react";
 
-export default function HomeHeader() {
+export default function Header() {
     return (
         <header className='mt-4'>
             <div className='container mx-auto flex items-center justify-between border rounded-full px-3 py-2'>
