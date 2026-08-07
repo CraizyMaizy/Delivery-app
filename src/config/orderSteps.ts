@@ -12,3 +12,8 @@ export const orderSteps: OrderStepConfig[] = [
   { label: 'Оплата доставки', path: '/order/step-6' },
   { label: 'Проверка данных', path: '/order/step-7' },
 ]
+
+export const getNextStepPath = (currentStep: number): string | null => {
+  const nextStep = orderSteps[currentStep]
+  return nextStep ? nextStep.path : null
+}

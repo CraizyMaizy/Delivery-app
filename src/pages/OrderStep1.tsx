@@ -5,6 +5,7 @@ import banner_sale from '../assets/Banner-2.png'
 import { Plane, BusFront } from 'lucide-react'
 import { OrderBreadcrumb } from '../components/OrderBreadcrumb.tsx'
 import { StepperProgress } from '../components/StepperProgress.tsx'
+import { useStepperNavigation } from '../hooks/useStepperNavigation.ts'
 
 export function OrderStep1() {
   const navigate = useNavigate()
@@ -13,9 +14,11 @@ export function OrderStep1() {
     (state) => state.selectDeliveryOption
   )
 
+  const { goToNextStep } = useStepperNavigation(1)
+
   const handleSelectOption = (option: DeliveryOption) => {
     selectDeliveryOption(option)
-    navigate('/order/step-2')
+    goToNextStep()
   }
 
   const getDeliveryIcon = (type: string) => {
