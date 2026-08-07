@@ -5,10 +5,10 @@ export type OrderStepConfig = {
 
 export const orderSteps: OrderStepConfig[] = [
   { label: 'Тип доставки', path: '/order/step-1' },
-  { label: 'Адрес отправителя', path: '/order/step-2' },
-  { label: 'Адрес получателя', path: '/order/step-3' },
-  { label: 'Данные отправителя', path: '/order/step-4' },
-  { label: 'Данные получателя', path: '/order/step-5' },
-  { label: 'Оплата', path: '/order/step-6' },
-  { label: 'Подтверждение', path: '/order/step-7' },
+  { label: 'Получатель', path: '/order/step-2' },
+  { label: 'Отправитель', path: '/order/step-3' },
+  { label: 'Откуда забрать', path: '/order/step-4' },
+  { label: 'Куда доставить', path: '/order/step-5' },
+  { label: 'Оплата доставки', path: '/order/step-6' },
+  { label: 'Проверка данных', path: '/order/step-7' },
 ]
