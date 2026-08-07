@@ -1,6 +1,6 @@
-import { DeliveryForm } from '../../components/DeliveryForm.tsx'
-import hero from '../../assets/hero.png'
-import banner from '../../assets/Banner.png'
+import { DeliveryForm } from '../components/DeliveryForm.tsx'
+import hero from '../assets/hero.png'
+import banner from '../assets/Banner.png'
 
 export default function Home() {
   return (

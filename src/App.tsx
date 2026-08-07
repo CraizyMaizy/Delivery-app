@@ -1,4 +1,4 @@
-import Home from './pages/home/Home.tsx'
+import Home from './pages/Home.tsx'
 import { Route, Routes } from 'react-router-dom'
 import { OrderStep1 } from './pages/OrderStep1.tsx'
 
