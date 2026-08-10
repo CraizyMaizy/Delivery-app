@@ -5,6 +5,13 @@ import type {
   DeliveryOption,
 } from '../types/delivery'
 
+export type PersonData = {
+  lastName: string
+  firstName: string
+  middleName: string
+  phone: string
+}
+
 type CalculatedData = {
   fromPoint: DeliveryPoint
   toPoint: DeliveryPoint
@@ -20,6 +27,8 @@ type OrderState = {
   selectedDeliveryOption: DeliveryOption | null
   setCalculatedData: (data: CalculatedData) => void
   selectDeliveryOption: (option: DeliveryOption) => void
+  receiver: PersonData | null
+  setReceiver: (data: PersonData) => void
 }
 
 export const useOrderStore = create<OrderState>((set) => ({
@@ -30,4 +39,6 @@ export const useOrderStore = create<OrderState>((set) => ({
   selectedDeliveryOption: null,
   setCalculatedData: (data) => set(data), // обновляет фулл data
   selectDeliveryOption: (option) => set({ selectedDeliveryOption: option }), // меняет только одно поле ( поле выбора обыч/эксп)
+  receiver: null,
+  setReceiver: (data) => set({ receiver: data }),
 }))
