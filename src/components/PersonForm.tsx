@@ -6,7 +6,7 @@ import { StepperProgress } from './StepperProgress'
 import { useOrderStore } from '../store/orderStore'
 import { useStepperNavigation } from '../hooks/useStepperNavigation'
 import { PersonSchema, type PersonFormData } from '../schemas/PersonSchema'
-import type { PersonData } from '../store/orderStore'
+import { OrderCard } from './OrderCard.tsx'
 
 type Props = {
   step: number
@@ -22,12 +22,6 @@ export function PersonForm({ step, title, role }: Props) {
   const setSender = useOrderStore((state) => state.setSender)
   const setReceiver = useOrderStore((state) => state.setReceiver)
   const setPerson = role === 'sender' ? setSender : setReceiver
-
-  const selectedDeliveryOption = useOrderStore(
-    (state) => state.selectedDeliveryOption
-  )
-  const sender = useOrderStore((state) => state.sender)
-  const receiver = useOrderStore((state) => state.receiver)
 
   const {
     register,
@@ -47,9 +41,6 @@ export function PersonForm({ step, title, role }: Props) {
     setPerson(data)
     goToNextStep()
   }
-
-  const formatPersonSummary = (person: PersonData | null) =>
-    person ? `${person.lastName} ${person.firstName}` : 'Заполните поля'
 
   return (
     <div className="container mx-auto mt-6">
@@ -141,30 +132,7 @@ export function PersonForm({ step, title, role }: Props) {
           </form>
         </div>
 
-        <div className="bg-gray-50 rounded-2xl p-6">
-          <h2 className="text-xl font-bold mb-4">Ваш заказ</h2>
-
-          <div className="mb-4">
-            <div className="text-sm text-gray-400">Тип доставки</div>
-            <div className="font-medium">
-              {selectedDeliveryOption?.name ?? 'Не выбрано'}
-            </div>
-          </div>
-
-          {step > 2 && (
-            <div className="mb-4">
-              <div className="text-sm text-gray-400">Получатель</div>
-              <div className="font-medium">{formatPersonSummary(receiver)}</div>
-            </div>
-          )}
-
-          {step > 3 && (
-            <div>
-              <div className="text-sm text-gray-400">Отправитель</div>
-              <div className="font-medium">{formatPersonSummary(sender)}</div>
-            </div>
-          )}
-        </div>
+        <OrderCard step={step} />
       </div>
     </div>
   )
