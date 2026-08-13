@@ -12,6 +12,14 @@ export type PersonData = {
   phone: string
 }
 
+export type AddressData = {
+  street: string
+  house: string
+  flat: string
+  noteForCourier?: string
+  leaveAtDoor: boolean
+}
+
 type CalculatedData = {
   fromPoint: DeliveryPoint
   toPoint: DeliveryPoint
@@ -31,6 +39,10 @@ type OrderState = {
   setReceiver: (data: PersonData) => void
   sender: PersonData | null
   setSender: (data: PersonData) => void
+  receiverAddress: AddressData | null
+  setReceiverAddress: (address: AddressData) => void
+  senderAddress: AddressData | null
+  setSenderAddress: (address: AddressData) => void
 }
 
 export const useOrderStore = create<OrderState>((set) => ({
@@ -45,4 +57,9 @@ export const useOrderStore = create<OrderState>((set) => ({
   setReceiver: (data) => set({ receiver: data }),
   sender: null,
   setSender: (data) => set({ sender: data }),
+  receiverAddress: null,
+  setReceiverAddress: (address: AddressData) =>
+    set({ receiverAddress: address }),
+  senderAddress: null,
+  setSenderAddress: (address: AddressData) => set({ senderAddress: address }),
 }))
