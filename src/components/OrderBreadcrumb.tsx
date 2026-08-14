@@ -10,7 +10,7 @@ export function OrderBreadcrumb({ currentStep }: Props) {
   const visibleSteps = orderSteps.slice(0, currentStep)
 
   return (
-    <nav className="flex items-center gap-2 text-sm text-gray-500 mb-4">
+    <nav className="flex items-center gap-2 text-sm text-gray-500 mb-4 flex-wrap">
       <div className="flex items-center gap-2">
         <Link to="/" className="hover:text-black transition-colors">
           <Home className="w-4 h-4" />
