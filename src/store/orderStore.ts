@@ -20,6 +20,8 @@ export type AddressData = {
   leaveAtDoor: boolean
 }
 
+export type PayerType = 'sender' | 'receiver'
+
 type CalculatedData = {
   fromPoint: DeliveryPoint
   toPoint: DeliveryPoint
@@ -43,6 +45,8 @@ type OrderState = {
   setReceiverAddress: (address: AddressData) => void
   senderAddress: AddressData | null
   setSenderAddress: (address: AddressData) => void
+  payer: PayerType | null
+  setPayer: (payer: PayerType) => void
 }
 
 export const useOrderStore = create<OrderState>((set) => ({
@@ -62,4 +66,6 @@ export const useOrderStore = create<OrderState>((set) => ({
     set({ receiverAddress: address }),
   senderAddress: null,
   setSenderAddress: (address: AddressData) => set({ senderAddress: address }),
+  payer: null,
+  setPayer: (payer) => set({ payer }),
 }))

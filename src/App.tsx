@@ -5,6 +5,7 @@ import { OrderStep2 } from './pages/OrderStep2.tsx'
 import { OrderStep3 } from './pages/OrderStep3.tsx'
 import { OrderStep5 } from './pages/OrderStep5.tsx'
 import { OrderStep4 } from './pages/OrderStep4.tsx'
+import { OrderStep6 } from './pages/OrderStep6.tsx'
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route path="/order/step-3" element={<OrderStep3 />} />
       <Route path="/order/step-4" element={<OrderStep4 />} />
       <Route path="/order/step-5" element={<OrderStep5 />} />
+      <Route path="/order/step-6" element={<OrderStep6 />} />
     </Routes>
   )
 }

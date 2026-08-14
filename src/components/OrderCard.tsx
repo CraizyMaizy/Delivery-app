@@ -18,6 +18,8 @@ export function OrderCard({ step }: Props) {
   const receiverAddress = useOrderStore((state) => state.receiverAddress)
   const senderAddress = useOrderStore((state) => state.senderAddress)
 
+  const payer = useOrderStore((state) => state.payer)
+
   const formatPersonSummary = (person: PersonData | null) =>
     person ? `${person.lastName} ${person.firstName}` : 'Заполните поля'
 
@@ -60,7 +62,7 @@ export function OrderCard({ step }: Props) {
         </div>
       )}
 
-      {step > 4 && (
+      {step > 5 && (
         <div>
           <div className="text-sm text-gray-400">Куда доставить</div>
           <div className="font-medium">
@@ -73,6 +75,14 @@ export function OrderCard({ step }: Props) {
         <div>
           <div className="text-sm text-gray-400">Примечание</div>
           <div className="font-medium">Оставить заказ у двери</div>
+        </div>
+      )}
+      {step > 6 && (
+        <div>
+          <div className="text-sm text-gray-400">Кто оплачивает доставку</div>
+          <div className="font-medium">
+            {payer === 'sender' ? 'Отправитель' : 'Получатель'}
+          </div>
         </div>
       )}
     </div>
