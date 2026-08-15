@@ -10,6 +10,8 @@ export function OrderStep7() {
   const selectedDeliveryOption = useOrderStore(
     (state) => state.selectedDeliveryOption
   )
+  const fromPoint = useOrderStore((state) => state.fromPoint)
+  const toPoint = useOrderStore((state) => state.toPoint)
   const senderAddress = useOrderStore((state) => state.senderAddress)
   const receiverAddress = useOrderStore((state) => state.receiverAddress)
   const sender = useOrderStore((state) => state.sender)
@@ -60,16 +62,16 @@ export function OrderStep7() {
             <div>
               <div className="text-sm text-gray-400 mb-1">Откуда забрать</div>
               <div className="font-medium">
-                ул. {senderAddress?.street}, д. {senderAddress?.house}, кв.{' '}
-                {senderAddress?.flat}
+                г. {fromPoint?.name}, ул. {senderAddress?.street}, д.{' '}
+                {senderAddress?.house}, кв. {senderAddress?.flat}
               </div>
             </div>
 
             <div>
               <div className="text-sm text-gray-400 mb-1">Куда доставить</div>
               <div className="font-medium">
-                ул. {receiverAddress?.street}, д. {receiverAddress?.house}, кв.{' '}
-                {receiverAddress?.flat}
+                г. {toPoint?.name}, ул. {receiverAddress?.street}, д.{' '}
+                {receiverAddress?.house}, кв. {receiverAddress?.flat}
               </div>
             </div>
 
