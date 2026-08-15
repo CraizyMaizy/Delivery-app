@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useOrderStore } from '../store/orderStore'
 import { OrderBreadcrumb } from '../components/OrderBreadcrumb'
 import { StepperProgress } from '../components/StepperProgress'
+import { formatPhone } from '../utils/formatPhone.ts'
 
 export function OrderStep7() {
   const navigate = useNavigate()
@@ -38,8 +39,9 @@ export function OrderStep7() {
               <div className="font-medium">
                 {receiver?.lastName} {receiver?.firstName}{' '}
                 {receiver?.middleName},
-                <br />
-                {receiver?.phone}
+              </div>
+              <div className="text-sm text-gray-500 mt-1">
+                {formatPhone(receiver?.phone ?? '')}
               </div>
             </div>
 
@@ -47,8 +49,9 @@ export function OrderStep7() {
               <div className="text-sm text-gray-400 mb-1 ">Отправитель</div>
               <div className="font-medium">
                 {sender?.lastName} {sender?.firstName} {sender?.middleName},
-                <br />
-                {sender?.phone}
+              </div>
+              <div className="text-sm text-gray-500 mt-1">
+                {formatPhone(sender?.phone ?? '')}
               </div>
             </div>
           </div>
