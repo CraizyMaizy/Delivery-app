@@ -18,9 +18,9 @@ export function OrderStep7() {
 
   return (
     <div className="container mx-auto mt-6">
-      <div className="max-w-2xl">
+      <div className="max-w-4xl">
         <OrderBreadcrumb currentStep={7} />
-        <h1 className="text-2xl font-bold mb-4">Проверка данных</h1>
+        <h1 className="text-2xl font-bold mb-5">Проверка данных</h1>
 
         <div className="mb-6">
           <StepperProgress currentStep={7} />
