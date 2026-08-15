@@ -10,6 +10,7 @@ import {
   type AddressFormData,
   AddressSchema,
 } from '../schemas/AddressSchema.tsx'
+import { InfoPopover } from './InfoPopover.tsx'
 
 type Props = {
   step: number
@@ -123,6 +124,13 @@ export function AddressForm({ step, title, role }: Props) {
                     className="w-4 h-4"
                   />
                   Оставить заказ у двери
+                  <InfoPopover
+                    title={'Бесконтактная доставка'}
+                    text={
+                      'Курьер привозит заказ, оставляет его у двери и' +
+                      ' уходит, а вам приходит уведомление на телефон о том, что заказ доставлен'
+                    }
+                  />
                 </label>
               </div>
             )}
