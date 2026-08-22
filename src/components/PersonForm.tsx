@@ -30,9 +30,9 @@ export function PersonForm({ step, title, role }: Props) {
   } = useForm<PersonFormData>({
     resolver: zodResolver(PersonSchema),
     defaultValues: {
-      lastName: currentPerson?.lastName ?? '',
-      firstName: currentPerson?.firstName ?? '',
-      middleName: currentPerson?.middleName ?? '',
+      lastname: currentPerson?.lastname ?? '',
+      firstname: currentPerson?.firstname ?? '',
+      middlename: currentPerson?.middlename ?? '',
       phone: currentPerson?.phone ?? '',
     },
   })
@@ -61,13 +61,13 @@ export function PersonForm({ step, title, role }: Props) {
             <div>
               <label className="block text-sm font-medium mb-1">Фамилия</label>
               <input
-                {...register('lastName')}
+                {...register('lastname')}
                 placeholder="Иванов"
                 className="w-full px-4 py-3 border rounded-xl outline-none focus:border-black transition-colors"
               />
-              {errors.lastName && (
+              {errors.lastname && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.lastName.message}
+                  {errors.lastname.message}
                 </p>
               )}
             </div>
@@ -75,13 +75,13 @@ export function PersonForm({ step, title, role }: Props) {
             <div>
               <label className="block text-sm font-medium mb-1">Имя</label>
               <input
-                {...register('firstName')}
+                {...register('firstname')}
                 placeholder="Иван"
                 className="w-full px-4 py-3 border rounded-xl outline-none focus:border-black transition-colors"
               />
-              {errors.firstName && (
+              {errors.firstname && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.firstName.message}
+                  {errors.firstname.message}
                 </p>
               )}
             </div>
@@ -89,13 +89,13 @@ export function PersonForm({ step, title, role }: Props) {
             <div>
               <label className="block text-sm font-medium mb-1">Отчество</label>
               <input
-                {...register('middleName')}
+                {...register('middlename')}
                 placeholder="Иванович"
                 className="w-full px-4 py-3 border rounded-xl outline-none focus:border-black transition-colors"
               />
-              {errors.middleName && (
+              {errors.middlename && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.middleName.message}
+                  {errors.middlename.message}
                 </p>
               )}
             </div>

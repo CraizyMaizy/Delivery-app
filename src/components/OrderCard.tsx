@@ -21,11 +21,11 @@ export function OrderCard({ step }: Props) {
   const payer = useOrderStore((state) => state.payer)
 
   const formatPersonSummary = (person: PersonData | null) =>
-    person ? `${person.lastName} ${person.firstName}` : 'Заполните поля'
+    person ? `${person.lastname} ${person.firstname}` : 'Заполните поля'
 
   const formatAddressSummary = (address: AddressData | null) =>
     address
-      ? `${address.street} ${address.house} ${address.flat}`
+      ? `${address.street} ${address.house} ${address.apartment}`
       : 'Заполните поля'
 
   return (
@@ -70,7 +70,7 @@ export function OrderCard({ step }: Props) {
           </div>
         </div>
       )}
-      {receiverAddress?.leaveAtDoor && (
+      {receiverAddress?.isNonContact && (
         // false = skip render by React, true = show right part
         <div>
           <div className="text-sm text-gray-400">Примечание</div>

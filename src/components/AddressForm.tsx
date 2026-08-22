@@ -38,9 +38,9 @@ export function AddressForm({ step, title, role }: Props) {
     defaultValues: {
       street: currentAddress?.street ?? '',
       house: currentAddress?.house ?? '',
-      flat: currentAddress?.flat ?? '',
-      leaveAtDoor: currentAddress?.leaveAtDoor ?? false,
-      noteForCourier: currentAddress?.noteForCourier ?? '',
+      apartment: currentAddress?.apartment ?? '',
+      isNonContact: currentAddress?.isNonContact ?? false,
+      comment: currentAddress?.comment ?? '',
     },
   })
 
@@ -92,12 +92,12 @@ export function AddressForm({ step, title, role }: Props) {
             <div>
               <label className="block text-sm font-medium mb-1">Квартира</label>
               <input
-                {...register('flat')}
+                {...register('apartment')}
                 className="w-full px-4 py-3 border rounded-xl outline-none focus:border-black transition-colors"
               />
-              {errors.flat && (
+              {errors.apartment && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.flat.message}
+                  {errors.apartment.message}
                 </p>
               )}
             </div>
@@ -106,12 +106,12 @@ export function AddressForm({ step, title, role }: Props) {
                 Заметка для курьера
               </label>
               <input
-                {...register('noteForCourier')}
+                {...register('comment')}
                 className="w-full px-4 py-3 border rounded-xl outline-none focus:border-black transition-colors"
               />
-              {errors.noteForCourier && (
+              {errors.comment && (
                 <p className="text-red-500 text-sm mt-1">
-                  {errors.noteForCourier.message}
+                  {errors.comment.message}
                 </p>
               )}
             </div>
@@ -120,7 +120,7 @@ export function AddressForm({ step, title, role }: Props) {
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
-                    {...register('leaveAtDoor')}
+                    {...register('isNonContact')}
                     className="w-4 h-4"
                   />
                   Оставить заказ у двери

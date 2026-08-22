@@ -38,7 +38,7 @@ export function OrderReview({ orderNumber }: Props) {
           <div>
             <div className="text-sm text-gray-400 mb-1">Получатель</div>
             <div className="font-medium">
-              {receiver?.lastName} {receiver?.firstName} {receiver?.middleName}
+              {receiver?.lastname} {receiver?.firstname} {receiver?.middlename}
             </div>
             <div className="text-sm text-gray-500 mt-1">
               {formatPhone(receiver?.phone ?? '')}
@@ -48,7 +48,7 @@ export function OrderReview({ orderNumber }: Props) {
           <div>
             <div className="text-sm text-gray-400 mb-1">Отправитель</div>
             <div className="font-medium">
-              {sender?.lastName} {sender?.firstName} {sender?.middleName}
+              {sender?.lastname} {sender?.firstname} {sender?.middlename}
             </div>
             <div className="text-sm text-gray-500 mt-1">
               {formatPhone(sender?.phone ?? '')}
@@ -61,7 +61,7 @@ export function OrderReview({ orderNumber }: Props) {
             <div className="text-sm text-gray-400 mb-1">Откуда забрать</div>
             <div className="font-medium">
               г. {fromPoint?.name}, ул. {senderAddress?.street}, д.{' '}
-              {senderAddress?.house}, кв. {senderAddress?.flat}
+              {senderAddress?.house}, кв. {senderAddress?.apartment}
             </div>
           </div>
 
@@ -69,7 +69,7 @@ export function OrderReview({ orderNumber }: Props) {
             <div className="text-sm text-gray-400 mb-1">Куда доставить</div>
             <div className="font-medium">
               г. {toPoint?.name}, ул. {receiverAddress?.street}, д.{' '}
-              {receiverAddress?.house}, кв. {receiverAddress?.flat}
+              {receiverAddress?.house}, кв. {receiverAddress?.apartment}
             </div>
           </div>
 

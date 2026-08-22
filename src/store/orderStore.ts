@@ -6,18 +6,18 @@ import type {
 } from '../types/delivery'
 
 export type PersonData = {
-  lastName: string
-  firstName: string
-  middleName: string
+  lastname: string
+  firstname: string
+  middlename: string
   phone: string
 }
 
 export type AddressData = {
   street: string
   house: string
-  flat: string
-  noteForCourier?: string
-  leaveAtDoor: boolean
+  apartment: string
+  comment?: string
+  isNonContact: boolean
 }
 
 export type PayerType = 'sender' | 'receiver'
