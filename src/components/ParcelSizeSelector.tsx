@@ -71,6 +71,7 @@ export function ParcelSizeSelector({ value, onChange }: Props) {
                     const selected = parcelTypes.find((p) => p.name === name)
                     if (selected) {
                       onChange({
+                        id: selected.id,
                         length: selected.length,
                         width: selected.width,
                         height: selected.height,

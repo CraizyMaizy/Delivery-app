@@ -47,6 +47,8 @@ type OrderState = {
   setSenderAddress: (address: AddressData) => void
   payer: PayerType | null
   setPayer: (payer: PayerType) => void
+  orderNumber: string | null
+  setOrderNumber: (orderNumber: string) => void
 }
 
 export const useOrderStore = create<OrderState>((set) => ({
@@ -68,4 +70,6 @@ export const useOrderStore = create<OrderState>((set) => ({
   setSenderAddress: (address: AddressData) => set({ senderAddress: address }),
   payer: null,
   setPayer: (payer) => set({ payer }),
+  orderNumber: null,
+  setOrderNumber: (orderNumber) => set({ orderNumber }),
 }))

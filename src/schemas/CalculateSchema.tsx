@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 const packageSizeSchema = z.object({
+  id: z.string().optional(),
   length: z.number().positive('Укажите длину'),
   width: z.number().positive('Укажите ширину'),
   height: z.number().positive('Укажите высоту'),
