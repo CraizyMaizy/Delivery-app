@@ -1,4 +1,14 @@
 # Delivery App
+![Главная страница](/src/screenshots/home-page.png)
+![Главная страница](/src/screenshots/size-package.png)
+![Главная страница](/src/screenshots/order-step-1.png)
+![Главная страница](/src/screenshots/order-step-2.png)
+![Главная страница](/src/screenshots/order-step-3.png)
+![Главная страница](/src/screenshots/order-step-4.png)
+![Главная страница](/src/screenshots/order-step-5.png)
+![Главная страница](/src/screenshots/order-step-6.png)
+![Главная страница](/src/screenshots/order-step-7.png)
+![Главная страница](/src/screenshots/order-success.png)
 
 Веб-приложение для расчёта стоимости доставки и оформления заказа на пересылку посылок между городами.
 
