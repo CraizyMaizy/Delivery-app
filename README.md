@@ -1,73 +1,70 @@
-# React + TypeScript + Vite
+# Delivery App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-приложение для расчёта стоимости доставки и оформления заказа на пересылку посылок между городами.
 
-Currently, two official plugins are available:
+## Функциональность
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Расчёт стоимости доставки** — выбор города отправления и назначения, размера посылки (готовые пресеты или произвольные размеры), получение вариантов доставки с ценой (обычная / экспресс)
+- **Многошаговое оформление заказа** (7 шагов):
+  1. Выбор типа доставки
+  2. Адрес отправителя
+  3. Адрес получателя
+  4. Данные отправителя
+  5. Данные получателя
+  6. Кто оплачивает доставку
+  7. Проверка данных и подтверждение заказа
+- **Прогресс степпера и хлебные крошки** — навигация между уже заполненными шагами
+- **Сводка заказа** — компактная (на каждом шаге) и развёрнутая (на этапе проверки и после оформления) версии
+- **Страница подтверждения** с номером созданного заказа
 
-## React Compiler
+## Стек
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Категория | Технологии |
+|---|---|
+| Основа | React, TypeScript, Vite |
+| Роутинг | React Router |
+| Состояние | Zustand |
+| Формы и валидация | React Hook Form, Zod |
+| Работа с API | TanStack Query, Axios |
+| UI-компоненты | Radix UI (Select, Popover, Tabs, RadioGroup) |
+| Стилизация | Tailwind CSS |
+| Иконки | Lucide React |
 
-## Expanding the ESLint configuration
+## Запуск проекта
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/CraizyMaizy/Delivery-app.git
+cd delivery-app
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Приложение будет доступно на `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Структура проекта
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+  api/          # функции запросов к REST API
+  components/   # переиспользуемые UI-компоненты (формы, карточки, степпер)
+  hooks/        # React Query хуки (useQuery / useMutation обёртки)
+  pages/        # страницы приложения и шаги степпера
+  schemas/      # Zod-схемы валидации форм
+  store/        # Zustand store с состоянием заказа
+  types/        # общие TypeScript-типы
+  utils/        # вспомогательные функции и конфиги (форматирование, список шагов)
+```
+
+## Архитектурные решения
+
+- **Переиспользуемые формы по роли.** Компоненты `PersonForm` и `AddressForm` используются одновременно для отправителя и получателя — принимают проп `role: 'sender' | 'receiver'` и сами определяют, в какое поле стора записывать данные.
+- **Единый источник конфигурации шагов.** Список шагов степпера (названия, пути) хранится в одном файле и используется одновременно для хлебных крошек и прогресс-бара — изменение шага правится в одном месте.
+- **Разделение UI и данных в сводке заказа.** Компонент отображения сводки заказа переиспользуется в трёх местах интерфейса (сайдбар, финальная проверка, страница успеха) с разным набором отображаемых деталей.
+- **Нормализация пользовательского ввода.** Номер телефона приводится к единому формату независимо от того, как его ввёл пользователь (с `8`, `+7`, пробелами или скобками).
+- **Синхронизация с реальным внешним API**, включая адаптацию кода при смене версии API и приведение именования полей формы к именам, ожидаемым бэкендом.
+
+## Возможные доработки
+
+- Авторизация и защищённые маршруты
+- Отслеживание статуса существующего заказа
+- Оплата заказа
