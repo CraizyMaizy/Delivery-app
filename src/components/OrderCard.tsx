@@ -3,6 +3,7 @@ import {
   type PersonData,
   useOrderStore,
 } from '../store/orderStore.ts'
+import type { DeliveryPoint } from '../types/delivery.ts'
 
 type Props = {
   step: number
@@ -14,6 +15,8 @@ export function OrderCard({ step }: Props) {
   )
   const receiver = useOrderStore((state) => state.receiver)
   const sender = useOrderStore((state) => state.sender)
+  const fromPoint = useOrderStore((state) => state.fromPoint)
+  const toPoint = useOrderStore((state) => state.toPoint)
 
   const receiverAddress = useOrderStore((state) => state.receiverAddress)
   const senderAddress = useOrderStore((state) => state.senderAddress)
@@ -23,9 +26,12 @@ export function OrderCard({ step }: Props) {
   const formatPersonSummary = (person: PersonData | null) =>
     person ? `${person.lastname} ${person.firstname}` : 'Заполните поля'
 
-  const formatAddressSummary = (address: AddressData | null) =>
+  const formatAddressSummary = (
+    address: AddressData | null,
+    city: DeliveryPoint | null
+  ) =>
     address
-      ? `${address.street} ${address.house} ${address.apartment}`
+      ? `г. ${city?.name}, ул. ${address.street}, д. ${address.house}, кв. ${address.apartment}`
       : 'Заполните поля'
 
   return (
@@ -57,7 +63,7 @@ export function OrderCard({ step }: Props) {
         <div>
           <div className="text-sm text-gray-400">Откуда забрать</div>
           <div className="font-medium">
-            {formatAddressSummary(senderAddress)}
+            {formatAddressSummary(senderAddress, fromPoint)}
           </div>
         </div>
       )}
@@ -66,7 +72,7 @@ export function OrderCard({ step }: Props) {
         <div>
           <div className="text-sm text-gray-400">Куда доставить</div>
           <div className="font-medium">
-            {formatAddressSummary(receiverAddress)}
+            {formatAddressSummary(receiverAddress, toPoint)}
           </div>
         </div>
       )}
