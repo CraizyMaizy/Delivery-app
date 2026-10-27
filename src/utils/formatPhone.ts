@@ -1,9 +1,14 @@
-export const formatPhone = (rawPhone: string): string => {
+export const formatPhone = (rawPhone: string | undefined): string => {
+  if (!rawPhone) return ''
+
   const digits = rawPhone.replace(/\D/g, '')
 
   let normalized = digits
   if (normalized.length === 11 && normalized.startsWith('8')) {
     normalized = '7' + normalized.slice(1)
+  }
+  if (normalized.length === 10) {
+    normalized = '7' + normalized
   }
   if (normalized.length !== 11) return rawPhone
 

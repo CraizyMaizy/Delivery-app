@@ -3,7 +3,7 @@ export const AddressSchema = z.object({
   street: z.string().min(1, 'Введите улицу'),
   house: z.string().min(1, 'Введите номер дома'),
   apartment: z.string().min(1, 'Введите номер квартиры'),
-  isNonContact: z.boolean(),
+  isNonContact: z.boolean().default(false),
   comment: z.string().optional(),
 })
 
