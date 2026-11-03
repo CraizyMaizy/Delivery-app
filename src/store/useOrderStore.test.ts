@@ -15,10 +15,10 @@ describe('useOrderStore', () => {
   it('empty in begin', () => {
     const state = useOrderStore.getState()
     expect(state.deliveryOptions).toEqual([])
-    expect(state.selectedDeliveryOption).toBeNull
-    expect(state.payer).toBeNull
-    expect(state.sender).toBeNull
-    expect(state.receiver).toBeNull
+    expect(state.selectedDeliveryOption).toBeNull()
+    expect(state.payer).toBeNull()
+    expect(state.sender).toBeNull()
+    expect(state.receiver).toBeNull()
   })
 
   it('setCalculated save data', () => {
